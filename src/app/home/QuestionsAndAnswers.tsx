@@ -73,7 +73,7 @@ const QAS = [
     answer: (
       <p>
         OpenResume was created by{" "}
-        <Link href="https://github.com/xitanggg">Xitang Zhao</Link> and designed
+        <Link href="https://github.com/prajwal411">Prajwal</Link> and designed
         by <Link href="https://www.linkedin.com/in/imzhi">Zhigang Wen</Link> as
         a weekend project. As immigrants to the US, we had made many mistakes
         when creating our first resumes and applying for internships and jobs.
@@ -99,7 +99,7 @@ const QAS = [
           at{" "}
           <Link href="mailto:hello@open-resume.com">hello@open-resume.com</Link>{" "}
           or{" "}
-          <Link href="https://github.com/xitanggg/open-resume/issues/new">
+          <Link href="https://github.com/prajwal411/open_resume/issues/new">
             open an issue
           </Link>{" "}
           at our Github repository. Whether you like it or not, we would love to
@@ -112,7 +112,7 @@ const QAS = [
           with creating their resume, and your word-of-mouth support would be
           greatly appreciated. If you use Github, you can also show your support
           by{" "}
-          <Link href="https://github.com/xitanggg/open-resume">
+          <Link href="https://github.com/prajwal411/open_resume">
             giving the project a star
           </Link>{" "}
           to help increase its popularity and reach.

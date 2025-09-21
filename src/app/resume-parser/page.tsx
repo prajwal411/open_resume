@@ -11,6 +11,7 @@ import { Heading, Link, Paragraph } from "components/documentation";
 import { ResumeTable } from "resume-parser/ResumeTable";
 import { FlexboxSpacer } from "components/FlexboxSpacer";
 import { ResumeParserAlgorithmArticle } from "resume-parser/ResumeParserAlgorithmArticle";
+import { RelevanceScoreDisplay } from "components/RelevanceScoreDisplay";
 
 const RESUME_EXAMPLES = [
   {
@@ -39,14 +40,20 @@ const defaultFileUrl = RESUME_EXAMPLES[0]["fileUrl"];
 export default function ResumeParser() {
   const [fileUrl, setFileUrl] = useState(defaultFileUrl);
   const [textItems, setTextItems] = useState<TextItems>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const lines = groupTextItemsIntoLines(textItems || []);
   const sections = groupLinesIntoSections(lines);
   const resume = extractResumeFromSections(sections);
 
   useEffect(() => {
     async function test() {
-      const textItems = await readPdf(fileUrl);
-      setTextItems(textItems);
+      setIsLoading(true);
+      try {
+        const textItems = await readPdf(fileUrl);
+        setTextItems(textItems);
+      } finally {
+        setIsLoading(false);
+      }
     }
     test();
   }, [fileUrl]);
@@ -68,10 +75,19 @@ export default function ResumeParser() {
             <Heading className="text-primary !mt-4">
               Resume Parser Playground
             </Heading>
+            
+            {/* Relevance Score Display */}
+            <RelevanceScoreDisplay 
+              resume={resume} 
+              className="mt-4 mb-6" 
+              isLoading={isLoading}
+            />
+            
             <Paragraph smallMarginTop={true}>
               This playground showcases the OpenResume resume parser and its
-              ability to parse information from a resume PDF. Click around the
-              PDF examples below to observe different parsing results.
+              ability to parse information from a resume PDF. The relevance score above
+              automatically evaluates how well your resume matches different job roles.
+              Click around the PDF examples below to observe different parsing results.
             </Paragraph>
             <div className="mt-3 flex gap-3">
               {RESUME_EXAMPLES.map((example, idx) => (
